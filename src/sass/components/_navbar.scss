@@ -3,10 +3,12 @@
 
   @include respond(tab-port) {
     visibility: visible;
-
+    position: fixed;
+    top: 0;
+    left: 0;
     color: white;
     width: 20%;
-    height: 95vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start !important;

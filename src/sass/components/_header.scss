@@ -1,25 +1,26 @@
 @import "../mixins";
 
 .header {
-    width: 100%;
-    background-color: $primary-color;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  background-color: $primary-color;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
 
-    &__logo {
-        color: $secondary-color;
-        font-size: 3rem;
-        font-family: $primary-font;
-    }
+  &__logo {
+    color: $secondary-color;
+    font-size: 3rem;
+    font-family: $primary-font;
+  }
 
+  &__mobile {
+    color: white;
+    visibility: visible;
+  }
+
+  @include respond(tab-port) {
     &__mobile {
-       visibility: visible;
+      visibility: hidden;
     }
-
-    @include respond(tab-port) {
-        &__mobile {
-            visibility: hidden;
-        }
-    }
+  }
 }
