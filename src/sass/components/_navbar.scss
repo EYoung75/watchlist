@@ -1,0 +1,36 @@
+.navbar {
+  visibility: hidden;
+
+  @include respond(tab-port) {
+    color: white;
+    width: 20%;
+    height: 95vh;
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    background-color: $primary-color;
+
+    h2 {
+      margin: 5rem 7rem 2rem 0;
+      color: $secondary-color;
+      text-transform: uppercase;
+    }
+
+    ul {
+      list-style: none;
+      line-height: 3rem;
+      font-size: 2rem;
+
+      li {
+        transition: all 0.3s;
+
+        &:hover {
+          cursor: pointer;
+          text-shadow: 0 0.5rem 0.5rem rgba(black, 0.8);
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}
