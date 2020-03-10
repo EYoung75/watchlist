@@ -2,10 +2,11 @@
   visibility: hidden;
 
   @include respond(tab-port) {
+    visibility: visible;
+
     color: white;
     width: 20%;
     height: 95vh;
-    visibility: visible;
     display: flex;
     flex-direction: column;
     justify-content: flex-start !important;

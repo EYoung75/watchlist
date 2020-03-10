@@ -14,12 +14,12 @@
     }
 
     &__mobile {
-       display: inline-block;
+       visibility: visible;
     }
 
-    @include respond(desktop) {
+    @include respond(tab-port) {
         &__mobile {
-            display: none;
+            visibility: hidden;
         }
     }
 }
