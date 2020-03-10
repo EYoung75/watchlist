@@ -1,0 +1,13 @@
+.header {
+    width: 100%;
+    background-color: $primary-color;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+
+    &__logo {
+        color: $secondary-color;
+        font-size: 3rem;
+        font-family: $primary-font;
+    }
+}
