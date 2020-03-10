@@ -19,8 +19,9 @@ html {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-    .home__container {
+    .landing__container {
         display: flex; 
         flex-direction: row;
         width: 100%;

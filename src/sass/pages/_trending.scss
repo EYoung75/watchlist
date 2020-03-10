@@ -1,0 +1,14 @@
+.trending {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    width: 100%;
+    background-color: $primary-color;
+
+
+    &__carousel {
+        align-self: center;
+       
+    }
+}
