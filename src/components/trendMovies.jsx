@@ -6,6 +6,7 @@ import {
   CarouselIndicators
 } from "reactstrap";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const TrendingMovies = () => {
   const [hasErrors, setErrors] = useState(false);
@@ -50,12 +51,14 @@ const TrendingMovies = () => {
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item["name"]}
+        key={item["title"]}
         className="carousel__item"
       >
-        <img
-          src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
-        />
+        <Link to={`/movie/${item["id"]}`}>
+          <img
+            src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
+          />
+        </Link>
         {/* <button className="trending__carousel__item__button">Details</button> */}
         <div className="carousel__item__badge">
           <FaStar className="carousel__item__badge__icon" />
