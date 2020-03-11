@@ -11,7 +11,7 @@ const MovieDetails = props => {
 
   async function fetchMovieDetails() {
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}?api_key=&language=en-US`
+      `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
       .then(res => setMovieDetails(res))

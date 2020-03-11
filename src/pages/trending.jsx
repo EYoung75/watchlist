@@ -34,7 +34,7 @@ const TrendingTV = () => {
 
   async function fetchTrendingTV() {
     await fetch(
-      "https://api.themoviedb.org/3/trending/tv/week?api_key="
+      `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`
     )
       .then(res => res.json())
       .then(res => setTrendingTV(res["results"]))
