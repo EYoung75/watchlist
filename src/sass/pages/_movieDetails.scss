@@ -13,7 +13,7 @@
     &__backButton {
       position: absolute;
       top: 0rem;
-      left: .5rem;
+      left: 0.5rem;
       font-size: 3rem;
       color: white;
     }
@@ -26,20 +26,71 @@
       position: absolute;
       bottom: 0;
       left: 0;
+      padding: 0.5rem;
       padding-left: 2rem;
-      background-color: rgba(white, 0.8);
-      color: black;
+      background-color: rgba($primary-color, 0.8);
+      color: white;
     }
   }
 
   &__overview {
     padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__vote {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+    }
 
     &__date {
+      font-size: 1.4rem;
+      font-weight: 700;
       display: flex;
       flex-direction: row;
       width: 100%;
       justify-content: space-evenly;
+    }
+
+    &__synopsis {
+      margin: 4rem 0;
+      h3 {
+        text-transform: uppercase;
+        text-decoration: underline;
+        line-height: 2rem;
+      }
+
+      p {
+        text-indent: 1rem;
+        padding: 2rem;
+      }
+    }
+
+    &__trailer {
+      height: 20rem;
+      width: 100%;
+    }
+  }
+
+  @include respond(tab-port) {
+    &__backdrop__backButton {
+      top: 1rem;
+      left: 3rem;
+      font-size: 4rem;
+    }
+
+    &__overview {
+      padding: 7rem;
+    }
+  }
+
+  @include respond(desktop) {
+    .movieDetails__overview__trailer {
+      height: 30rem;
+      width: 70%;
     }
   }
 }

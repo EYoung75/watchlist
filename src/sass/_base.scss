@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./mixins";
 
 *,
 *::after,
@@ -11,7 +12,10 @@
 html {
   font-size: 70%;
   hyphens: auto;
-  background-color: $tertiary-color;
+
+  @include respond(tab-port) {
+    font-size: 100%;
+  }
  
 }
 
@@ -21,4 +25,6 @@ html {
     flex-direction: column;
     align-items: center;
     font-family: $secondary-font;
+    background-color: $tertiary-color;
+
 }
