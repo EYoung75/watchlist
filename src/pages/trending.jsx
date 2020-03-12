@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ShowCard from "../components/showCard.jsx";
+import { Link } from "react-router-dom";
+
 import {
   Carousel,
   CarouselItem,
@@ -45,15 +46,16 @@ const TrendingTV = () => {
     console.log(item);
     return (
       <CarouselItem
-      
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item["name"]}
         className="carousel__item"
       >
-        <img
-          src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
-        />
+        <Link to={`/show/${item["id"]}`}>
+          <img
+            src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
+          />
+        </Link>
         {/* <button className="trending__carousel__item__button">Details</button> */}
         <div className="carousel__item__badge">
           <FaStar className="carousel__item__badge__icon" />

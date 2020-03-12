@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   const [collapsed, setCollapsed] = useState(true);
@@ -15,7 +7,7 @@ const Header = props => {
 
   return (
     <div className="header">
-      <div className="header__logo">WatchList</div>
+      <Link to="/" className="header__logo">WatchList</Link>
       <div className="header__mobile">
         Menu
       </div>
