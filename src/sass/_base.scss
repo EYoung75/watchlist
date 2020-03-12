@@ -12,7 +12,7 @@ html {
   font-size: 70%;
   hyphens: auto;
   background-color: $tertiary-color;
-  font-family: $secondary-font;
+ 
 }
 
 .App {
@@ -20,12 +20,5 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .landing__container {
-        display: flex; 
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
-    }
-    
+    font-family: $secondary-font;
 }

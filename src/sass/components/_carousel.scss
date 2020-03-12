@@ -1,14 +1,12 @@
 .carousel {
-  align-self: center;
-  margin: 5rem 0;
+  color: white;
+  margin: 3rem;
 
-  &__indicators {
-    margin: 5rem 0;
-  }
+  // &__indicators {
+  //   margin: 5rem 0;
+  // }
 
   &__item {
-
-
     img {
       width: 25rem;
       z-index: 1;

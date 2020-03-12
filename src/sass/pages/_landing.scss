@@ -1,0 +1,13 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  background-color: $primary-color;
+
+  @include respond(tab-port) {
+    flex-direction: row;
+  }
+}

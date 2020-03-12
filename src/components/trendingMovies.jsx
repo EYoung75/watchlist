@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
 import {
   Carousel,
   CarouselItem,
@@ -8,50 +6,55 @@ import {
   CarouselIndicators
 } from "reactstrap";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const TrendingTV = () => {
+const TrendingMovies = () => {
   const [hasErrors, setErrors] = useState(false);
-  const [trendingTV, setTrendingTV] = useState([]);
-  const [trendingTVIndex, setTrendingTVIndex] = useState(0);
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [trendingMoviesIndex, setTrendingMoviesIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
-    fetchTrendingTV();
+    fetchTrendingMovies();
   }, []);
 
   const next = () => {
     if (animating) return;
     const nextIndex =
-      trendingTVIndex === trendingTV.length - 1 ? 0 : trendingTVIndex + 1;
-    setTrendingTVIndex(nextIndex);
+      trendingMoviesIndex === trendingMovies.length - 1
+        ? 0
+        : trendingMoviesIndex + 1;
+    setTrendingMoviesIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
     const nextIndex =
-      trendingTVIndex === 0 ? trendingTV.length - 1 : trendingTVIndex - 1;
-    setTrendingTVIndex(nextIndex);
+      trendingMoviesIndex === 0
+        ? trendingMovies.length - 1
+        : trendingMoviesIndex - 1;
+    setTrendingMoviesIndex(nextIndex);
   };
 
-  async function fetchTrendingTV() {
+  async function fetchTrendingMovies() {
     await fetch(
-      `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`
+      `https://api.themoviedb.org/3/trending/movies/week?api_key=${process.env.REACT_APP_API_KEY}`
     )
       .then(res => res.json())
-      .then(res => setTrendingTV(res["results"]))
+      .then(res => setTrendingMovies(res["results"]))
       .catch(() => setErrors(true));
   }
 
-  const slides = trendingTV.map(item => {
+  const slides = trendingMovies.map(item => {
     console.log(item);
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item["name"]}
+        key={item["title"]}
         className="carousel__item"
       >
-        <Link to={`/show/${item["id"]}`}>
+        <Link to={`/movie/${item["id"]}`}>
           <img
             src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
           />
@@ -61,22 +64,25 @@ const TrendingTV = () => {
           <FaStar className="carousel__item__badge__icon" />
           <p>{item["vote_average"]}</p>
         </div>
-        <h3>{item["name"]}</h3>
+        <h3>{item["title"]}</h3>
       </CarouselItem>
     );
   });
 
   return (
-    <div className="trending">
-      <h2>Trending Shows:</h2>
+    <div className="carousel">
+      <h2>Trending Movies:</h2>
       <Carousel
         interval={8000}
-        activeIndex={trendingTVIndex}
+        activeIndex={trendingMoviesIndex}
         next={next}
         previous={previous}
-        className="carousel"
       >
-        {/* <CarouselIndicators items={trendingTV} activeIndex={trendingTVIndex} className="carousel__indicators"/> */}
+        {/* <CarouselIndicators
+          items={trendingMovies}
+          activeIndex={trendingMoviesIndex}
+          className="carousel__indicators"
+        /> */}
         {slides}
         <CarouselControl
           direction="prev"
@@ -93,4 +99,4 @@ const TrendingTV = () => {
   );
 };
 
-export default TrendingTV;
+export default TrendingMovies;
