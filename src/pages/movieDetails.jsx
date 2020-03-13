@@ -12,6 +12,7 @@ const MovieDetails = props => {
   }, []);
 
   async function fetchMovieDetails() {
+    // const baseUrl=""
     fetch(
       `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
@@ -20,12 +21,15 @@ const MovieDetails = props => {
     fetch(`https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     .then(res => res.json())
     .then(res => setMovieTrailer(res.results[0]))
+    fetch(`https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+    fetch(`https://api.themoviedb.org/3/movie/${movieID}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
   }
 
 
   return (
     <div className="movieDetails">
-      {/* {console.log(movieDetails)} */}
+      {console.log(movieDetails)}
       <div className="movieDetails__backdrop">
         <Link to="/" className="movieDetails__backdrop__backButton">
           <FaArrowAltCircleLeft />
