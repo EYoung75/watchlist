@@ -3,6 +3,7 @@ import { FaArrowAltCircleLeft, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import RelatedMovieCard from "../components/relatedMovieCard.jsx";
 import CastCard from "../components/castCard.jsx";
+import Review from "../components/review.jsx";
 
 const MovieDetails = props => {
   const [movieID, setMovieID] = useState(props.match.params["id"]);
@@ -69,7 +70,7 @@ const MovieDetails = props => {
         {JSON.stringify(movieDetails.genres)}
         <div className="movieDetails__overview__vote">
           <FaStar />
-          <p>{movieDetails["vote_average"]}</p>
+          <p>{movieDetails["vote_average"] + "/10"}</p>
           <p>{"(" + movieDetails["vote_count"] + ")"}</p>
         </div>
         <div className="movieDetails__overview__date">
@@ -92,12 +93,7 @@ const MovieDetails = props => {
         <CastCard cast={movieCast} />
         <div className="movieDetails__reviews">
           <h3>Reviews:</h3>
-          {movieReviews.map(review => (
-            <div className="movieDetails__reviews__review">
-              <h4>{review.author}</h4>
-              <p>{review.content}</p>
-            </div>
-          ))}
+          <Review reviews={movieReviews}/>
         </div>
         <div className="movieDetails__related">
           <h3>Related Movies:</h3>

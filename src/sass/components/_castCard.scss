@@ -6,6 +6,10 @@
   margin: 5rem 0;
   box-shadow: 0 1rem 1.5rem rgba(white, .7);
   border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  
 
   &__item {
       color: black;
@@ -13,7 +17,7 @@
       width: 100%;
     }
     & > * {
-        margin: .5rem 0;
+      margin: 1rem;
     }
   }
 
