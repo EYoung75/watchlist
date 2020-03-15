@@ -1,0 +1,23 @@
+.castCard {
+  width: 100%;
+  background-color: rgba(white, 0.9);
+  color: black;
+  padding: 1rem;
+  margin: 5rem 0;
+  box-shadow: 0 1rem 1.5rem rgba(white, .7);
+  border-radius: 3px;
+
+  &__item {
+      color: black;
+    img {
+      width: 100%;
+    }
+    & > * {
+        margin: .5rem 0;
+    }
+  }
+
+  h4 {
+      font-size: 2rem;
+  }
+}

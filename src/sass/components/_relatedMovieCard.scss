@@ -1,0 +1,18 @@
+.relatedMovie {
+  margin: 2rem 0;
+
+  img {
+    width: 100%;
+  }
+
+  &__banner {
+    width: 100%;
+    position: relative;
+    bottom: 4rem;
+    padding: 1rem;
+    background-color: rgba(white, 0.8);
+    h4 {
+      color: black;
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowAltCircleLeft, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import RelatedMovieCard from "../components/relatedMovieCard.jsx";
+import CastCard from "../components/castCard.jsx";
 
 const MovieDetails = props => {
   const [movieID, setMovieID] = useState(props.match.params["id"]);
@@ -9,8 +11,9 @@ const MovieDetails = props => {
   const [movieReviews, setMovieReviews] = useState([]);
   const [relatedMovies, setRelatedMovies] = useState([]);
   const [movieCast, setMovieCast] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const [reviewsModal, setReviewsModal] = useState(false);
 
+  
   useEffect(() => {
     fetchMovieDetails();
   }, []);
@@ -86,12 +89,7 @@ const MovieDetails = props => {
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
-        <div className="movieDetails__cast">
-          <h3>Cast:</h3>
-          {movieCast.map(cast => (
-            <p>{cast.character}</p>
-          ))}
-        </div>
+        <CastCard cast={movieCast} />
         <div className="movieDetails__reviews">
           <h3>Reviews:</h3>
           {movieReviews.map(review => (
@@ -104,9 +102,7 @@ const MovieDetails = props => {
         <div className="movieDetails__related">
           <h3>Related Movies:</h3>
           {relatedMovies.map(title => (
-            <div className="movieDetails__related__card">
-              <h4>{title.title}</h4>
-            </div>
+            <RelatedMovieCard title={title} />
           ))}
         </div>
       </div>
