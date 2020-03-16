@@ -9,10 +9,10 @@ import {
 } from "reactstrap";
 import { FaStar } from "react-icons/fa";
 
-const TrendingTV = () => {
+const TrendingTV = (props) => {
   const [hasErrors, setErrors] = useState(false);
-  const [trendingTV, setTrendingTV] = useState([]);
-  const [trendingTVIndex, setTrendingTVIndex] = useState(0);
+  const [TV, setTrendingTV] = useState([]);
+  const [TVIndex, setTVIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
@@ -22,27 +22,27 @@ const TrendingTV = () => {
   const next = () => {
     if (animating) return;
     const nextIndex =
-      trendingTVIndex === trendingTV.length - 1 ? 0 : trendingTVIndex + 1;
-    setTrendingTVIndex(nextIndex);
+      TVIndex === TV.length - 1 ? 0 : TVIndex + 1;
+    setTVIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
     const nextIndex =
-      trendingTVIndex === 0 ? trendingTV.length - 1 : trendingTVIndex - 1;
-    setTrendingTVIndex(nextIndex);
+      TVIndex === 0 ? TV.length - 1 : TVIndex - 1;
+    setTVIndex(nextIndex);
   };
 
   async function fetchTrendingTV() {
     await fetch(
-      `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`
+      `${props.tv.url}?api_key=${process.env.REACT_APP_API_KEY}`
     )
       .then(res => res.json())
       .then(res => setTrendingTV(res["results"]))
       .catch(() => setErrors(true));
   }
 
-  const slides = trendingTV.map(item => {
+  const slides = TV.map(item => {
     console.log(item);
     return (
       <CarouselItem
@@ -68,10 +68,10 @@ const TrendingTV = () => {
 
   return (
     <div className="carousel">
-      <h2>Trending in TV:</h2>
+      <h2>{props.tv.title}</h2>
       <Carousel
         interval={8000}
-        activeIndex={trendingTVIndex}
+        activeIndex={TVIndex}
         next={next}
         previous={previous}
        
