@@ -17,7 +17,7 @@ const ShowDetails = props => {
   }
   return <div className="showDetails">
        <img
-            src={"https://image.tmdb.org/t/p/original/" + showDetails["poster_path"]}
+            src={"https://image.tmdb.org/t/p/original/" + showDetails["backdrop_path"]}
           />
         <h1>{showDetails["name"]}</h1>
         {console.log(JSON.stringify(showDetails))}
