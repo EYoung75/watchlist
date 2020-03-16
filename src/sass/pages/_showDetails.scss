@@ -1,16 +1,42 @@
 .showDetails {
   width: 100%;
+  background-color: $primary-color;
+  color: white;
 
   &__backdrop {
+    width: 100%;
+    position: relative;
+    box-shadow: 0 0.5rem 2rem rgba(white, 0.4);
+
     img {
       width: 100%;
     }
+
+    &__banner {
+        width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 0.5rem;
+      padding-left: 2rem;
+      background-color: rgba($primary-color, 0.8);
+      color: white;
+    }
     &__backButton {
       position: absolute;
-      top: 6rem;
+      top: 0rem;
       left: 0.5rem;
       font-size: 3rem;
       color: white;
+    }
+  }
+
+  &__overview {
+    padding: 3rem;
+
+    p {
+        text-indent: 2rem;
+        margin: 1rem;
     }
   }
 }

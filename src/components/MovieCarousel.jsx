@@ -8,10 +8,10 @@ import {
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const TrendingMovies = () => {
+const MovieCarousel = (props) => {
   const [hasErrors, setErrors] = useState(false);
-  const [trendingMovies, setTrendingMovies] = useState([]);
-  const [trendingMoviesIndex, setTrendingMoviesIndex] = useState(0);
+  const [movies, setMovies] = useState([]);
+  const [moviesIndex, setMoviesIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
@@ -21,31 +21,31 @@ const TrendingMovies = () => {
   const next = () => {
     if (animating) return;
     const nextIndex =
-      trendingMoviesIndex === trendingMovies.length - 1
+      moviesIndex === movies.length - 1
         ? 0
-        : trendingMoviesIndex + 1;
-    setTrendingMoviesIndex(nextIndex);
+        : moviesIndex + 1;
+    setMoviesIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
     const nextIndex =
-      trendingMoviesIndex === 0
-        ? trendingMovies.length - 1
-        : trendingMoviesIndex - 1;
-    setTrendingMoviesIndex(nextIndex);
+      moviesIndex === 0
+        ? movies.length - 1
+        : moviesIndex - 1;
+    setMoviesIndex(nextIndex);
   };
 
   async function fetchTrendingMovies() {
     await fetch(
-      `https://api.themoviedb.org/3/trending/movies/week?api_key=${process.env.REACT_APP_API_KEY}`
+      `${props.movie.url}?api_key=${process.env.REACT_APP_API_KEY}`
     )
       .then(res => res.json())
-      .then(res => setTrendingMovies(res["results"]))
+      .then(res => setMovies(res["results"]))
       .catch(() => setErrors(true));
   }
 
-  const slides = trendingMovies.map(item => {
+  const slides = movies.map(item => {
     console.log(item);
     return (
       <CarouselItem
@@ -71,10 +71,10 @@ const TrendingMovies = () => {
 
   return (
     <div className="carousel">
-      <h2>Trending Movies:</h2>
+      <h2>{props.movie.title}</h2>
       <Carousel
         interval={8000}
-        activeIndex={trendingMoviesIndex}
+        activeIndex={moviesIndex}
         next={next}
         previous={previous}
       >
@@ -99,4 +99,4 @@ const TrendingMovies = () => {
   );
 };
 
-export default TrendingMovies;
+export default MovieCarousel;

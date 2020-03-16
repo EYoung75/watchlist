@@ -68,7 +68,7 @@ const TrendingTV = () => {
 
   return (
     <div className="carousel">
-      <h2>Trending Shows:</h2>
+      <h2>Trending in TV:</h2>
       <Carousel
         interval={8000}
         activeIndex={trendingTVIndex}
