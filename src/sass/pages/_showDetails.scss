@@ -1,7 +1,16 @@
 .showDetails {
-    width: 100%;
+  width: 100%;
 
+  &__backdrop {
     img {
-        width: 100%;
+      width: 100%;
     }
+    &__backButton {
+      position: absolute;
+      top: 6rem;
+      left: 0.5rem;
+      font-size: 3rem;
+      color: white;
+    }
+  }
 }
