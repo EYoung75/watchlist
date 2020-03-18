@@ -26,14 +26,18 @@ function Landing() {
   return (
     <div className="landing">
       {/* <Navbar className="navbar"/> */}
-      <h2>TV:</h2>
-      {tvs.map(tv => (
-        <TVCarousel tv={tv} />
-      ))}
-      <h2>Movies::</h2>
-      {movies.map(movie => (
-        <MovieCarousel movie={movie} />
-      ))}
+      <h2 className="landing__heading">TV:</h2>
+      <div className="landing__contentContainer">
+        {tvs.map(tv => (
+          <TVCarousel tv={tv} />
+        ))}
+      </div>
+      <h2 className="landing__heading">Movies:</h2>
+      <div className="landing__contentContainer">
+        {movies.map(movie => (
+          <MovieCarousel movie={movie} />
+        ))}
+      </div>
     </div>
   );
 }

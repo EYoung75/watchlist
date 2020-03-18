@@ -43,7 +43,6 @@ const TrendingTV = (props) => {
   }
 
   const slides = TV.map(item => {
-    console.log(item);
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}

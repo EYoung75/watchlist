@@ -4,11 +4,26 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  width: 100%;
   background-color: $primary-color;
   color: white;
 
-  @include respond(tab-port) {
+  &__heading {
+    font-size: 3rem;
+    align-self: center;
+    margin-top: 2rem;
+    text-decoration: underline;
+    color: $secondary-color;
+  }
+
+  &__contentContainer {
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  @include respond(tab-port) {
   }
 }
