@@ -9,10 +9,13 @@
 
   &__heading {
     font-size: 3rem;
-    align-self: center;
     margin-top: 2rem;
-    text-decoration: underline;
-    color: $secondary-color;
+    color: white;
+    background-color: rgba($secondary-color, 0.8);
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: 0 1rem 1rem rgba($secondary-color, 0.8);
   }
 
   &__contentContainer {
@@ -21,7 +24,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-
   }
 
   @include respond(tab-port) {

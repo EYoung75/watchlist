@@ -71,7 +71,7 @@ const MovieCarousel = (props) => {
 
   return (
     <div className="carousel">
-      <h2>{props.movie.title}</h2>
+      <h2>{props.movie.title + ":"}</h2>
       <Carousel
         interval={8000}
         activeIndex={moviesIndex}
