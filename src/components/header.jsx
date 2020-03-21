@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "../components/searchBar.jsx";
 
-const Header = props => {
+function Header() {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
     <div className="header">
-      <Link to="/" className="header__logo">WatchList</Link>
-      <div className="header__mobile">
-        Menu
+      <div className="header__menu">
+        <Link to="/" className="header__logo">
+          WatchList
+        </Link>
+        <button onClick={toggleNavbar}>Menu</button>
       </div>
+      {collapsed ? " " : <SearchBar />}
     </div>
   );
-};
+}
 
 export default Header;

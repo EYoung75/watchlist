@@ -46,7 +46,6 @@ const MovieCarousel = (props) => {
   }
 
   const slides = movies.map(item => {
-    console.log(item);
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
