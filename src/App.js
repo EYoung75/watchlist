@@ -18,6 +18,9 @@ function App() {
         <Route path="/show/:id" component={ShowDetails}/>
         <Route path="/search/:search" component={Search}/>
       </Switch>
+      <div className="footer">
+        <img src={require("./assets/tmdb-logo.svg")} alt="tmdb logo"/>
+      </div>
     </div>
   );
 }

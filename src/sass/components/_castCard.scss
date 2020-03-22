@@ -1,5 +1,4 @@
 .castCard {
-  width: 100%;
   background-color: rgba(white, 0.9);
   color: black;
   padding: 1rem;
@@ -8,16 +7,19 @@
   border-radius: 3px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  
+  justify-content: center;
+  align-items: center;
+
 
   &__item {
+    display: flex;
+    justify-content: center;
       color: black;
     img {
       width: 100%;
     }
     & > * {
-      margin: 1rem;
+      margin-bottom: 1rem;
     }
   }
 

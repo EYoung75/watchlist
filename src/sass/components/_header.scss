@@ -48,12 +48,14 @@
     padding: 1rem 0;
     height: auto;
     transition: all .5s;
+    font-size: 150%;
 
     input {
       border-radius: 3px;
       border: none;
       height: 2rem;
       width: 100%;
+      padding: .5rem;
     }
 
     &__button {

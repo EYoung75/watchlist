@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaArrowAltCircleLeft, FaStar } from "react-icons/fa";
+import { FaChevronCircleLeft, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import RelatedMovieCard from "../components/relatedMovieCard.jsx";
 import CastCard from "../components/castCard.jsx";
@@ -51,7 +51,7 @@ const MovieDetails = props => {
       {console.log(relatedMovies)}
       <div className="movieDetails__backdrop">
         <Link to="/" className="movieDetails__backdrop__backButton">
-          <FaArrowAltCircleLeft />
+          <FaChevronCircleLeft/>
         </Link>
         <img
           src={
