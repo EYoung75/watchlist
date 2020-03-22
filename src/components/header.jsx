@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "../components/searchBar.jsx";
+import { FaAngleDown} from "react-icons/fa";
 
 function Header() {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
+  const [search, setSearch] = useState("");
+
 
   return (
     <div className="header">
@@ -12,9 +14,13 @@ function Header() {
         <Link to="/" className="header__logo">
           WatchList
         </Link>
-        <button onClick={toggleNavbar}>Menu</button>
+        <button onClick={toggleNavbar} className={collapsed ? "header__button" : "header__button--up header__button"}><FaAngleDown/></button>
       </div>
-      <SearchBar collapsed={collapsed}/>
+      <div className={collapsed ? "header__collapsed" : "header__searchBar"}>
+      <label for="search">Search:</label>
+      <input id="search" onChange={e => setSearch(e.target.value)} />
+      <Link to={`/search/${search}`}>Search</Link>
+    </div>
     </div>
   );
 }

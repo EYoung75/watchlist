@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const ShowDetails = props => {
-  const [showID, setShowID] = useState(props.match.params["id"]);
   const [showDetails, setShowDetails] = useState([]);
 
   useEffect(() => {
-    fetchShowDetails();
+    fetchShowDetails(props.match.params["id"]);
   }, []);
 
-  async function fetchShowDetails() {
+  async function fetchShowDetails(id) {
     fetch(
-      `https://api.themoviedb.org/3/tv/${showID}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
       .then(res => setShowDetails(res));

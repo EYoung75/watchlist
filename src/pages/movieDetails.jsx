@@ -6,7 +6,6 @@ import CastCard from "../components/castCard.jsx";
 import Review from "../components/review.jsx";
 
 const MovieDetails = props => {
-  const [movieID, setMovieID] = useState(props.match.params["id"]);
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieTrailer, setMovieTrailer] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
@@ -14,35 +13,34 @@ const MovieDetails = props => {
   const [movieCast, setMovieCast] = useState([]);
   const [reviewsModal, setReviewsModal] = useState(false);
 
-  
   useEffect(() => {
-    fetchMovieDetails();
+    fetchMovieDetails(props.match.params["id"]);
   }, []);
 
-  async function fetchMovieDetails() {
+  async function fetchMovieDetails(id) {
     // const baseUrl=""
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
       .then(res => setMovieDetails(res));
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
       .then(res => setMovieTrailer(res.results[0]));
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
       .then(res => setRelatedMovies(res.results));
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
       .then(res => setMovieCast(res.cast));
     fetch(
-      `https://api.themoviedb.org/3/movie/${movieID}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
       .then(res => setMovieReviews(res.results));
@@ -83,17 +81,21 @@ const MovieDetails = props => {
           <h3>Synopsis:</h3>
           <p>{movieDetails["overview"]}</p>
         </div>
-        <iframe
-          className="movieDetails__overview__trailer"
-          src={`https://www.${movieTrailer.site}.com/embed/${movieTrailer.key}`}
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        {movieTrailer != undefined ? (
+          <iframe
+            className="movieDetails__overview__trailer"
+            src={`https://www.${movieTrailer.site}.com/embed/${movieTrailer.key}`}
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        ) : (
+          ""
+        )}
         <CastCard cast={movieCast} />
         <div className="movieDetails__reviews">
           <h3>Reviews:</h3>
-          <Review reviews={movieReviews}/>
+          <Review reviews={movieReviews} />
         </div>
         <div className="movieDetails__related">
           <h3>Related Movies:</h3>

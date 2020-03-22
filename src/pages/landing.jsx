@@ -1,5 +1,4 @@
 import React from "react";
-import TrendingTV from "../components/TVCarousel.jsx";
 import MovieCarousel from "../components/MovieCarousel.jsx";
 import TVCarousel from "../components/TVCarousel.jsx";
 

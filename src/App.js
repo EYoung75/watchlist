@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import Landing from "./pages/landing.jsx";
 import MovieDetails from "./pages/movieDetails.jsx"
 import ShowDetails from "./pages/showDetails.jsx";
+import Search from "./pages/search.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" exact component={Landing} />
         <Route path="/movie/:id" component={MovieDetails}/>
         <Route path="/show/:id" component={ShowDetails}/>
+        <Route path="/search/:search" component={Search}/>
       </Switch>
     </div>
   );
