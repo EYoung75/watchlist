@@ -10,7 +10,6 @@ const MovieDetails = props => {
   const [movieTrailer, setMovieTrailer] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
   const [relatedMovies, setRelatedMovies] = useState([]);
-  const [movieCast, setMovieCast] = useState([]);
   const [reviewsModal, setReviewsModal] = useState(false);
 
   useEffect(() => {
@@ -34,11 +33,7 @@ const MovieDetails = props => {
     )
       .then(res => res.json())
       .then(res => setRelatedMovies(res.results));
-    fetch(
-      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
-    )
-      .then(res => res.json())
-      .then(res => setMovieCast(res.cast));
+   
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
@@ -92,7 +87,7 @@ const MovieDetails = props => {
         ) : (
           ""
         )}
-        <CastCard cast={movieCast} />
+        <CastCard movie={props.match.params["id"]} />
         <div className="movieDetails__reviews">
           <h3>Reviews:</h3>
           <Review reviews={movieReviews} />

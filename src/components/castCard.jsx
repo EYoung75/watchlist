@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselItem,
@@ -6,8 +6,22 @@ import {
   CarouselIndicators
 } from "reactstrap";
 
-const CastCard = props => {
-  const slides = props.cast.map(item => {
+function CastCard(props) {
+  const [cast, setCast] = useState([]);
+
+
+  useEffect(() => {
+    fetchCast(props.movie);
+  }, []);
+
+  async function fetchCast(id) {
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    )
+      .then(res => res.json())
+      .then(res => setCast(res.cast));
+  }
+  const slides = cast.map(item => {
     console.log(item);
     return (
       <CarouselItem
@@ -30,13 +44,13 @@ const CastCard = props => {
 
   const next = () => {
     if (animating) return;
-    const nextIndex = castIndex === props.cast.length - 1 ? 0 : castIndex + 1;
+    const nextIndex = castIndex === cast.length - 1 ? 0 : castIndex + 1;
     setCastIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
-    const nextIndex = castIndex === 0 ? props.cast.length - 1 : castIndex - 1;
+    const nextIndex = castIndex === 0 ? cast.length - 1 : castIndex - 1;
     setCastIndex(nextIndex);
   };
 

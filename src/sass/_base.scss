@@ -16,23 +16,22 @@ html {
   @include respond(tab-port) {
     font-size: 100%;
   }
- 
 }
 
 .App {
-    width: 100%;
-    font-family: $secondary-font;
-    background-color: $tertiary-color;
+  font-family: $secondary-font;
+  background-color: $primary-color;
+  box-sizing: border-box;
 
-    .footer {
-      background-color: $primary-color;
-      padding: 5rem;
-      display: flex;
-      justify-content: center;
 
-      img {
-        height: 5rem;
-      }
+  .footer {
+    background-color: $primary-color;
+    padding: 5rem;
+    display: flex;
+    justify-content: center;
+
+    img {
+      height: 5rem;
     }
-
+  }
 }
