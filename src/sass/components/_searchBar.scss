@@ -1,24 +1,48 @@
 .searchBar {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  animation: expand 1s;
+  visibility: visible;
+  padding: 1rem 0;
+
+
+  input {
+    border-radius: 3px;
+    border: none;
+    height: 2rem;
+    width: 100%;
+  }
+
+  button {
+    width: 50%;
+    padding: 0.5rem;
+    background-color: $secondary-color;
     color: white;
+    margin: 1rem;
+    border-radius: 7px;
+    border: none;
+    box-shadow: 0 1rem 1rem rgba(black, 0.6);
+    align-self: center;
+  }
+}
 
-    input {
-        border-radius: 3px;
-        border: none;
-        height: 2rem;
-        width: 100%;
-    }
+.collapsed {
+  visibility: hidden;
+}
 
-    button {
-        width: 50%;
-        padding: .5rem;
-        background-color: $secondary-color;
-        color: white;
-        margin: 1rem;
-        border-radius: 7px;
-        border: none;
-        box-shadow: 0 1rem 1rem rgba(black, .6);
-        align-self: center;
-    }
+.results {
+  background-color: $primary-color;
+}
+
+@keyframes expand {
+  0% {
+    visibility: hidden;
+    padding: 0;
+  }
+
+  100% {
+    visibility: visible;
+    padding: 2rem 0;
+  }
 }

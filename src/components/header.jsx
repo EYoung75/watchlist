@@ -14,7 +14,7 @@ function Header() {
         </Link>
         <button onClick={toggleNavbar}>Menu</button>
       </div>
-      {collapsed ? " " : <SearchBar />}
+      <SearchBar collapsed={collapsed}/>
     </div>
   );
 }
