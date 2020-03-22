@@ -6,16 +6,17 @@
   align-items: center;
   background-color: $primary-color;
   color: white;
+  margin-top: 4rem;
 
   &__heading {
     font-size: 3rem;
     margin-top: 2rem;
     color: white;
-    background-color: rgba($secondary-color, 0.8);
+    background-image: linear-gradient(to right bottom, $secondary-color, $primary-color);
     width: 100%;
-    text-align: center;
+    text-align: left;
     padding: 1rem;
-    box-shadow: 0 1rem 1rem rgba($secondary-color, 0.8);
+    padding-left: 3rem;
   }
 
   &__contentContainer {

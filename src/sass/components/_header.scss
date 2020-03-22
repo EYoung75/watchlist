@@ -2,11 +2,16 @@
 
 .header {
   width: 100%;
-  background-color: $primary-color;
+  background-image: linear-gradient(to bottom, $primary-color 90%, $secondary-color 95%, transparent);
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 
   &__logo {
     color: $secondary-color;
@@ -20,51 +25,50 @@
   }
 
   &__button {
-    color: white;
+    color: $secondary-color;
     font-size: 3rem;
-    transition: all .4s;
+    transition: all 0.4s;
+    background-color: transparent;
+    border: none;
 
     &--up {
-      transform: rotate(540deg) translateY(-1rem);
+      transform: rotate(180deg) translateY(-1rem);
       transform-origin: center;
     }
   }
 
   @include respond(tab-port) {
-   
   }
 
   &__searchBar {
     display: flex;
     flex-direction: column;
     color: white;
-    animation: expand 1s;
     visibility: visible;
     padding: 1rem 0;
-  
-  
+    height: auto;
+    transition: all .5s;
+
     input {
       border-radius: 3px;
       border: none;
       height: 2rem;
       width: 100%;
     }
-  
-    button {
-      width: 50%;
+
+    &__button {
       padding: 0.5rem;
-      background-color: $secondary-color;
-      color: white;
       margin: 1rem;
-      border-radius: 7px;
-      border: none;
-      box-shadow: 0 1rem 1rem rgba(black, 0.6);
-      align-self: center;
+      background-color: white;
+      width: 25%;
+      text-align: center;
+      border-radius: 3px;
+      box-shadow: 0 .5rem .5rem rgba(black, .8);
     }
   }
-  
+
   &__collapsed {
+    height: 0;
     visibility: hidden;
   }
-  
 }

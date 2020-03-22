@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaWindowClose } from "react-icons/fa";
 
 function Search(props) {
   const [movieResults, setMovieResults] = useState([]);
@@ -24,25 +25,38 @@ function Search(props) {
 
   return (
     <div className="search">
-      <h2>Results for "{props.match.params["search"]}"</h2>
-      <h4>{movieResults.length} results in Movies:</h4>
-      {movieResults.map(movie => (
-        <Link to={`/movie/${movie["id"]}`}>
-          <div>
-            <h3>{movie.title}</h3>
-            <p>{movie.overview}</p>
-          </div>
+      <div className="search__header">
+        <Link to="/">
+          <FaWindowClose className="search__header__close" />
         </Link>
-      ))}
-      <h4>{TVResults.length} results in TV:</h4>
-      {TVResults.map(tv => (
-        <Link to={`/show/${tv["id"]}`}>
-          <div>
-            <h3>{tv.name}</h3>
-            <p>{tv.overview}</p>
-          </div>
-        </Link>
-      ))}
+        <h2>Results for "{props.match.params["search"]}"</h2>
+      </div>
+      {movieResults.length == 0 && TVResults.length == 0 ? (
+        <div className="search__empty">
+          Sorry, no results for '{props.match.params["search"]}' were found.
+        </div>
+      ) : (
+        <div>
+          <h4>{movieResults.length} results in Movies:</h4>
+          {movieResults.map(movie => (
+            <Link to={`/movie/${movie["id"]}`}>
+              <div className="search__result">
+                <h3>{movie.title}</h3>
+                <p>{movie.overview.substring(0, 100) + "..."}</p>
+              </div>
+            </Link>
+          ))}
+          <h4>{TVResults.length} results in TV:</h4>
+          {TVResults.map(tv => (
+            <Link to={`/show/${tv["id"]}`}>
+              <div className="search__result">
+                <h3>{tv.name}</h3>
+                <p>{tv.overview.substring(0, 100) + "..."}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

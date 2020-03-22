@@ -19,7 +19,7 @@ function Header() {
       <div className={collapsed ? "header__collapsed" : "header__searchBar"}>
       <label for="search">Search:</label>
       <input id="search" onChange={e => setSearch(e.target.value)} />
-      <Link to={`/search/${search}`}>Search</Link>
+      <Link to={`/search/${search}`} className="header__searchBar__button">Search &rarr;</Link>
     </div>
     </div>
   );
