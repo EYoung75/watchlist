@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { FaChevronCircleLeft, FaStar } from "react-icons/fa";
+import { FaChevronCircleLeft, FaStar, FaAngleDown } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import RelatedMovieCard from "../components/relatedMovieCard.jsx";
 import CastCard from "../components/castCard.jsx";
 import Review from "../components/review.jsx";
+import MovieCarousel from "../components/MovieCarousel.jsx";
 
 const MovieDetails = props => {
   const [movieDetails, setMovieDetails] = useState([]);
@@ -11,6 +13,8 @@ const MovieDetails = props => {
   const [movieReviews, setMovieReviews] = useState([]);
   const [relatedMovies, setRelatedMovies] = useState([]);
   const [reviewsModal, setReviewsModal] = useState(false);
+  const toggleReviews = () => setReviewsModal(!reviewsModal);
+
 
   useEffect(() => {
     fetchMovieDetails(props.match.params["id"]);
@@ -41,6 +45,8 @@ const MovieDetails = props => {
       .then(res => setMovieReviews(res.results));
   }
 
+
+
   return (
     <div className="movieDetails">
       {console.log(relatedMovies)}
@@ -59,22 +65,28 @@ const MovieDetails = props => {
         </div>
       </div>
       <div className="movieDetails__overview">
+        <div className="movieDetails__overview__date">
+          <p>
+            {movieDetails["release_date"] != undefined
+              ? movieDetails["release_date"].slice(0, 4)
+              : ""}
+          </p>
+          <p>{movieDetails["runtime"] + " min."}</p>
+        </div>
         <p>"{movieDetails["tagline"]}"</p>
         <div className="movieDetails__genres">
           {movieDetails["genres"] != null || undefined
             ? movieDetails["genres"].map(movie => {
-                return <p>{movie.name}</p>;
+                return <p>| {movie.name}</p>;
               })
             : ""}
         </div>{" "}
         <div className="movieDetails__overview__vote">
-          <FaStar />
-          <p>{ movieDetails["vote_average"] + "/10"}</p>
+          <div className="movieDetails__overview__vote__average">
+            <FaStar className="movieDetails__overview__vote__star" />
+            <p>{movieDetails["vote_average"] + "/10"}</p>
+          </div>
           <p>{"(" + movieDetails["vote_count"] + ")"}</p>
-        </div>
-        <div className="movieDetails__overview__date">
-          <p>{movieDetails["release_date"] != undefined ? movieDetails["release_date"].slice(0,4) : ""}</p>
-          <p>{"Runtime: " + movieDetails["runtime"] + " minutes"}</p>
         </div>
         <div className="movieDetails__overview__synopsis">
           <h3>Synopsis:</h3>
@@ -94,10 +106,12 @@ const MovieDetails = props => {
         <CastCard movie={props.match.params["id"]} />
         <div className="movieDetails__reviews">
           <h3>Reviews:</h3>
-          <Review reviews={movieReviews} />
+          <FaAngleDown onClick={() => toggleReviews()} className={reviewsModal ? "movieDetails__reviews__arrow movieDetails__reviews__arrow--expanded" : "movieDetails__reviews__arrow"}/>
+          {reviewsModal == false ? "" : <Review reviews={movieReviews} />}
         </div>
         <div className="movieDetails__related">
           <h3>Related Movies:</h3>
+          {/* <MovieCarousel movie={relatedMovies}/> */}
           {relatedMovies.map(title => (
             <RelatedMovieCard title={title} />
           ))}

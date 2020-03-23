@@ -5,7 +5,7 @@ const Review = props => {
     <div className="reviews">
       {props.reviews.map(review => (
         <div className="reviews__review">
-          <h4>Author: {review.author}</h4>
+          <h4>By {review.author}</h4>
           <p>{review.content}</p>
         </div>
       ))}

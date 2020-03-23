@@ -1,23 +1,22 @@
 .castCard {
-  background-color: rgba(white, 0.9);
-  color: black;
-  padding: 1rem;
+  color: white;
   margin: 5rem 0;
-  box-shadow: 0 1rem 1.5rem rgba(white, .7);
   border-radius: 3px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+
 
 
   &__item {
-    color: black;
+    width: 80%;
+ 
+
     img {
-      width: 100%;
-    }
-    & > * {
-      margin-bottom: 1rem;
+      width: 50%;
     }
   }
 

@@ -23,7 +23,7 @@
       top: 0rem;
       left: 0.5rem;
       font-size: 3rem;
-      color: $secondary-color;
+      color: white;
     }
     img {
       width: 100%;
@@ -49,9 +49,20 @@
 
     &__vote {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       width: 100%;
+      align-items: center;
       justify-content: center;
+
+      &__star {
+        color: rgb(248, 211, 1);
+        font-size: 1.4rem;
+      }
+
+      &__average {
+        display: flex;
+        flex-direction: row;
+      }
     }
 
     &__date {
@@ -77,11 +88,23 @@
       }
     }
 
-
     &__trailer {
-      height: 20rem;
       width: 100%;
     }
+  }
+  &__reviews {
+    align-self: center;
+    text-align: center;
+    margin-bottom: 5rem;
+
+   &__arrow {
+     font-size: 2rem;
+     transition: all .4s;
+
+     &--expanded {
+       transform: rotate(180deg);
+     }
+   }
   }
 
   @include respond(tab-port) {
