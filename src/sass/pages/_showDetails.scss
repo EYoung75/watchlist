@@ -4,6 +4,12 @@
   color: white;
   padding-top: 6rem;
 
+  &__genres {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
+
   &__backdrop {
     width: 100%;
     position: relative;

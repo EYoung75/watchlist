@@ -60,8 +60,11 @@ const MovieDetails = props => {
       </div>
       <div className="movieDetails__overview">
         <p>{movieDetails["tagline"]}</p>
-        {JSON.stringify(movieDetails.genres)}
-        <div className="movieDetails__overview__vote">
+        {movieDetails["genres"] != null || undefined
+            ? movieDetails["genres"].map(movie => {
+                return <p>{movie.name}</p>;
+              })
+            : ""}        <div className="movieDetails__overview__vote">
           <FaStar />
           <p>{movieDetails["vote_average"] + "/10"}</p>
           <p>{"(" + movieDetails["vote_count"] + ")"}</p>
@@ -70,7 +73,6 @@ const MovieDetails = props => {
           <p>{movieDetails["release_date"]}</p>
           <p>{"Runtime: " + movieDetails["runtime"] + " minutes"}</p>
         </div>
-        {/* <p>{JSON.stringify(movieDetails["genres"])}</p> */}
 
         <div className="movieDetails__overview__synopsis">
           <h3>Synopsis:</h3>
