@@ -33,7 +33,7 @@ const MovieDetails = props => {
     )
       .then(res => res.json())
       .then(res => setRelatedMovies(res.results));
-   
+
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
@@ -46,7 +46,7 @@ const MovieDetails = props => {
       {console.log(relatedMovies)}
       <div className="movieDetails__backdrop">
         <Link to="/" className="movieDetails__backdrop__backButton">
-          <FaChevronCircleLeft/>
+          <FaChevronCircleLeft />
         </Link>
         <img
           src={
@@ -59,21 +59,23 @@ const MovieDetails = props => {
         </div>
       </div>
       <div className="movieDetails__overview">
-        <p>{movieDetails["tagline"]}</p>
-        {movieDetails["genres"] != null || undefined
+        <p>"{movieDetails["tagline"]}"</p>
+        <div className="movieDetails__genres">
+          {movieDetails["genres"] != null || undefined
             ? movieDetails["genres"].map(movie => {
                 return <p>{movie.name}</p>;
               })
-            : ""}        <div className="movieDetails__overview__vote">
+            : ""}
+        </div>{" "}
+        <div className="movieDetails__overview__vote">
           <FaStar />
-          <p>{movieDetails["vote_average"] + "/10"}</p>
+          <p>{ movieDetails["vote_average"] + "/10"}</p>
           <p>{"(" + movieDetails["vote_count"] + ")"}</p>
         </div>
         <div className="movieDetails__overview__date">
-          <p>{movieDetails["release_date"]}</p>
+          <p>{movieDetails["release_date"] != undefined ? movieDetails["release_date"].slice(0,4) : ""}</p>
           <p>{"Runtime: " + movieDetails["runtime"] + " minutes"}</p>
         </div>
-
         <div className="movieDetails__overview__synopsis">
           <h3>Synopsis:</h3>
           <p>{movieDetails["overview"]}</p>

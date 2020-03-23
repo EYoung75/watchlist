@@ -1,6 +1,10 @@
 
 .reviews {
     padding: 2rem;
+
+    h3 {
+        margin-left: 3rem;
+    }
     &__review {
         text-indent: 2rem;
         margin: 5rem 0;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaChevronCircleLeft } from "react-icons/fa";
+import { FaChevronCircleLeft, FaGlobe } from "react-icons/fa";
 
 const ShowDetails = props => {
   const [showDetails, setShowDetails] = useState([]);
@@ -35,16 +35,30 @@ const ShowDetails = props => {
       </div>
       <div className="showDetails__overview">
         {console.log(showDetails["genres"])}
-        <div className="showDetails__genres">
+        <div className="showDetails__map">
           {showDetails["genres"] != null || undefined
             ? showDetails["genres"].map(show => {
-                return <p>{show.name}</p>;
+                return <p key={show.id}>{show.name}</p>;
+              })
+            : ""}
+        </div>
+        <div className="showDetails__map">
+          {showDetails["networks"] != null || undefined
+            ? showDetails["networks"].map(show => {
+                return (
+                  <img
+                    src={
+                      "https://image.tmdb.org/t/p/original/" + show["logo_path"]
+                    }
+                    alt={show.name}
+                  />
+                );
               })
             : ""}
         </div>
         <h3>Overview:</h3>
         <p>{showDetails["overview"]}</p>
-        <h3>First Aired: {showDetails["first_air_date"]}</h3>
+        <h3>First Aired: {showDetails["first_air_date"] != undefined ? showDetails["first_air_date"].slice(0,4) : ""}</h3>
         <p>
           {showDetails["in_production"] == true ? "Still running" : "Finished"}
         </p>

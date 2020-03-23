@@ -4,10 +4,14 @@
   color: white;
   padding-top: 6rem;
 
-  &__genres {
+  &__map {
       display: flex;
       flex-direction: row;
       justify-content: center;
+
+      img {
+          height: 2rem;
+      }
   }
 
   &__backdrop {
