@@ -7,6 +7,7 @@ import Landing from "./pages/landing.jsx";
 import MovieDetails from "./pages/movieDetails.jsx"
 import ShowDetails from "./pages/showDetails.jsx";
 import Search from "./pages/search.jsx";
+import SeasonDetails from "./pages/seasonDetails.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/movie/:id" component={MovieDetails}/>
+        <Route path="/show/:id/season/:season" component={SeasonDetails}/>
         <Route path="/show/:id" component={ShowDetails}/>
         <Route path="/search/:search" component={Search}/>
       </Switch>

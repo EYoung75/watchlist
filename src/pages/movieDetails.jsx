@@ -73,8 +73,8 @@ const MovieDetails = props => {
           </p>
           <p>{movieDetails["runtime"] + " min."}</p>
         </div>
-        <p>"{movieDetails["tagline"]}"</p>
-        <div className="movieDetails__genres">
+        <p>{movieDetails["tagline"]}</p>
+        <div className="movieDetails__map">
           {movieDetails["genres"] != null || undefined
             ? movieDetails["genres"].map(movie => {
                 return <p>| {movie.name}</p>;

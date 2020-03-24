@@ -6,9 +6,10 @@
   color: white;
   padding-top: 6rem;
 
-  &__genres {
+  &__map {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
   }

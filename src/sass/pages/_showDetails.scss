@@ -8,6 +8,7 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
+      margin: 2rem 0;
 
       img {
           height: 2rem;
@@ -44,10 +45,15 @@
 
   &__overview {
     padding: 3rem;
-
     p {
         text-indent: 2rem;
         margin: 1rem;
     }
+  }
+
+  &__season {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
   }
 }
