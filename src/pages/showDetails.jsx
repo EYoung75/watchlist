@@ -52,7 +52,7 @@ const ShowDetails = props => {
         <div className="showDetails__map">
           {showDetails["genres"] != null || undefined
             ? showDetails["genres"].map(show => {
-                return <p key={show.id}>| {show.name}</p>;
+                return <p key={show.id}>|{show.name}</p>;
               })
             : ""}
         </div>

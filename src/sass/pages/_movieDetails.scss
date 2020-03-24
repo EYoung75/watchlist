@@ -98,32 +98,58 @@
     text-align: center;
     margin-bottom: 5rem;
 
-   &__arrow {
-     font-size: 2rem;
-     transition: all .4s;
+    &__arrow {
+      font-size: 2rem;
+      transition: all 0.4s;
 
-     &--expanded {
-       transform: rotate(180deg);
-     }
-   }
+      &--expanded {
+        transform: rotate(180deg);
+      }
+    }
   }
 
   @include respond(tab-port) {
     &__backdrop__backButton {
-      top: 1rem;
-      left: 3rem;
-      font-size: 4rem;
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      font-size: 3rem;
+      color: white;
     }
 
     &__overview {
-      padding: 7rem;
+      padding: 5rem;
+
+      &__vote {
+        flex-direction: row;
+        width: 30%;
+        justify-content: space-evenly;
+      }
+
+      &__trailer {
+        height: 25rem;
+        width: 100%;
+      }
     }
   }
 
   @include respond(desktop) {
-    .movieDetails__overview__trailer {
-      height: 30rem;
-      width: 70%;
+    width: 90%;
+
+    &__backdrop {
+      width: 80%;
+      align-self: center;
+    }
+
+    &__overview {
+      &__synopsis {
+        width: 75%;
+        margin: 4rem 0;
+      }
+
+      &__trailer {
+        width: 70%;
+      }
     }
   }
 }

@@ -4,16 +4,9 @@ import TVCarousel from "../components/TVCarousel.jsx";
 
 function Landing() {
   const movies = [
-    { title: "Top Rated", url: "https://api.themoviedb.org/3/movie/top_rated" },
-    {
-      title: "Trending",
-      url: "https://api.themoviedb.org/3/trending/movie/day"
-    },
-    {
-      title: "Now Playing",
-      url: "https://api.themoviedb.org/3/movie/now_playing"
-    },
-    { title: "Popular", url: "https://api.themoviedb.org/3/movie/popular" }
+    {title: "Trending",url: "https://api.themoviedb.org/3/trending/movie/day"},
+    { title: "Popular", url: "https://api.themoviedb.org/3/movie/popular" },
+    { title: "Top Rated", url: "https://api.themoviedb.org/3/movie/top_rated" }
   ];
 
   const tvs = [
@@ -22,11 +15,10 @@ function Landing() {
     { title: "Top Rated", url: "https://api.themoviedb.org/3/tv/top_rated" }
   ];
 
-
   return (
     <div className="landing">
       {/* <Navbar className="navbar"/> */}
-   
+
       <h2 className="landing__heading">TV:</h2>
       <div className="landing__contentContainer">
         {tvs.map(tv => (

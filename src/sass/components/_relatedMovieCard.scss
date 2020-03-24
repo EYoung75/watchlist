@@ -15,4 +15,12 @@
       color: black;
     }
   }
+
+  @include respond(tab-port) {
+    width: 60%;
+  }
+
+  @include respond(desktop) {
+    width: 40%;
+  }
 }

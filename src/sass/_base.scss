@@ -22,6 +22,9 @@ html {
   font-family: $secondary-font;
   background-color: $primary-color;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 
   .footer {

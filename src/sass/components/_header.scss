@@ -2,7 +2,12 @@
 
 .header {
   width: 100%;
-  background-image: linear-gradient(to bottom, $primary-color 90%, $secondary-color 95%, transparent);
+  background-image: linear-gradient(
+    to bottom,
+    $primary-color 90%,
+    $secondary-color 95%,
+    transparent
+  );
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
@@ -36,10 +41,6 @@
       transform-origin: center;
     }
   }
-
-  @include respond(tab-port) {
-  }
-
   &__searchBar {
     display: flex;
     flex-direction: column;
@@ -47,14 +48,14 @@
     visibility: visible;
     padding: 1rem 0;
     height: auto;
-    transition: all .5s;
+    transition: all 0.5s;
     font-size: 150%;
 
     input {
       border-radius: 3px;
       border: none;
       width: 100%;
-      padding: .25rem;
+      padding: 0.25rem;
     }
 
     &__button {
@@ -63,12 +64,24 @@
       background-color: white;
       text-align: center;
       border-radius: 3px;
-      box-shadow: 0 .5rem .5rem rgba(black, .8);
+      box-shadow: 0 0.5rem 0.5rem rgba(black, 0.8);
     }
   }
 
   &__collapsed {
     height: 0;
     visibility: hidden;
+  }
+  @include respond(tab-port) {
+    &__searchBar {
+      input {
+        width: 50%;
+        padding: 0;
+      }
+
+      &__button {
+        width: 25%;
+      }
+    }
   }
 }
