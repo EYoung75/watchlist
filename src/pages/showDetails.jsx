@@ -49,6 +49,8 @@ const ShowDetails = props => {
               })
             : ""}
         </div>
+        <h3><u>Tags:</u></h3>
+
         <div className="showDetails__map">
           {showDetails["genres"] != null || undefined
             ? showDetails["genres"].map(show => {
@@ -80,16 +82,22 @@ const ShowDetails = props => {
             " min/episode(s)"}
         </p>
         <h3>Available Seasons: </h3>
-        {showDetails["seasons"] != null || undefined
-          ? showDetails["seasons"].map(season => (
-              <Link to={`/show/${showDetails["id"]}/season/${season["season_number"]}`} className="showDetails__season" key={season["id"]}>
-                <p>{season.name}</p>
-                <h5>
-                  <FaAngleRight />
-                </h5>
-              </Link>
-            ))
-          : ""}
+        <div className="showDetails__seasons">
+          {showDetails["seasons"] != null || undefined
+            ? showDetails["seasons"].map(season => (
+                <Link
+                  to={`/show/${showDetails["id"]}/season/${season["season_number"]}`}
+                  className="showDetails__seasons__season"
+                  key={season["id"]}
+                >
+                  <p>{season.name}</p>
+                  <h5>
+                    <FaAngleRight />
+                  </h5>
+                </Link>
+              ))
+            : ""}
+        </div>
       </div>
     </div>
   );

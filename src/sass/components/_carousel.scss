@@ -2,6 +2,7 @@
   color: white;
   margin: 3rem 0;
   display: flex;
+  height: auto;
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
@@ -27,6 +28,8 @@
       margin-bottom: 1rem;
       width: 25rem;
       z-index: 1;
+      transition: all .4s;
+
     }
 
     &__badge {
@@ -63,6 +66,14 @@
     &__item {
       img {
         width: 100%;
+      }
+    }
+  }
+
+  @include respond(desktop) {
+    &__item {
+      img:hover {
+        @include elevate(box);
       }
     }
   }

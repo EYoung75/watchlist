@@ -15,7 +15,6 @@ const MovieDetails = props => {
   const [reviewsModal, setReviewsModal] = useState(false);
   const toggleReviews = () => setReviewsModal(!reviewsModal);
 
-
   useEffect(() => {
     fetchMovieDetails(props.match.params["id"]);
   }, []);
@@ -36,7 +35,7 @@ const MovieDetails = props => {
       `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
-      .then(res => setRelatedMovies(res.results));
+      .then(res => setRelatedMovies(res.results.splice(0,5)));
 
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
@@ -44,8 +43,6 @@ const MovieDetails = props => {
       .then(res => res.json())
       .then(res => setMovieReviews(res.results));
   }
-
-
 
   return (
     <div className="movieDetails">
@@ -74,6 +71,7 @@ const MovieDetails = props => {
           <p>{movieDetails["runtime"] + " min."}</p>
         </div>
         <p>{movieDetails["tagline"]}</p>
+        <h3><u>Tags:</u></h3>
         <div className="movieDetails__map">
           {movieDetails["genres"] != null || undefined
             ? movieDetails["genres"].map(movie => {
@@ -106,16 +104,29 @@ const MovieDetails = props => {
         <CastCard movie={props.match.params["id"]} />
         <div className="movieDetails__reviews">
           <h3>Reviews:</h3>
-          <FaAngleDown onClick={() => toggleReviews()} className={reviewsModal ? "movieDetails__reviews__arrow movieDetails__reviews__arrow--expanded" : "movieDetails__reviews__arrow"}/>
+          <FaAngleDown
+            onClick={() => toggleReviews()}
+            className={
+              reviewsModal
+                ? "movieDetails__reviews__arrow movieDetails__reviews__arrow--expanded"
+                : "movieDetails__reviews__arrow"
+            }
+          />
           {reviewsModal == false ? "" : <Review reviews={movieReviews} />}
-        </div>
-        <div className="movieDetails__related">
-          <h3>Related Movies:</h3>
-          {/* <MovieCarousel movie={relatedMovies}/> */}
-          {relatedMovies.map(title => (
-            <RelatedMovieCard title={title} />
-          ))}
-        </div>
+        </div>{" "}
+        {relatedMovies.length === 0 ? (
+          "No related movies available"
+        ) : (
+          <div>
+            <h3>Related Movies:</h3>
+            <div className="movieDetails__related">
+              {/* <MovieCarousel movie={relatedMovies}/> */}
+              {relatedMovies.map(title => (
+                <RelatedMovieCard title={title} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -17,9 +17,8 @@ function Header() {
         <button onClick={toggleNavbar} className={collapsed ? "header__button" : "header__button--up header__button"}><FaAngleDown/></button>
       </div>
       <div className={collapsed ? "header__collapsed" : "header__searchBar"}>
-      <label for="search">Search:</label>
-      <input id="search" onChange={e => setSearch(e.target.value)} />
-      <Link to={`/search/${search}`} className="header__searchBar__button">Search &rarr;</Link>
+      <input id="search" onChange={e => setSearch(e.target.value)} placeholder="Search movies and shows"/>
+      <Link to={`/search/${search}`} className="header__searchBar__button" onClick={() => toggleNavbar()}>Search &rarr;</Link>
     </div>
     </div>
   );

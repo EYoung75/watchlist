@@ -25,6 +25,7 @@ function Search(props) {
 
   return (
     <div className="search">
+      {console.log(movieResults)}
       <div className="search__header">
         <Link to="/">
           <FaWindowClose className="search__header__close" />
@@ -38,23 +39,27 @@ function Search(props) {
       ) : (
         <div>
           <h4>{movieResults.length} results in Movies:</h4>
-          {movieResults.map(movie => (
-            <Link to={`/movie/${movie["id"]}`}>
-              <div className="search__result">
-                <h3>{movie.title}</h3>
-                <p>{movie.overview.substring(0, 100) + "..."}</p>
-              </div>
-            </Link>
-          ))}
+          <div className="search__container">
+            {movieResults.map(movie => (
+              <Link to={`/movie/${movie["id"]}`}>
+                <div className="search__result">
+                  <h3>{movie.title}</h3>
+                  <p>{movie.overview.substring(0, 100) + "..."}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
           <h4>{TVResults.length} results in TV:</h4>
-          {TVResults.map(tv => (
-            <Link to={`/show/${tv["id"]}`}>
-              <div className="search__result">
-                <h3>{tv.name}</h3>
-                <p>{tv.overview.substring(0, 100) + "..."}</p>
-              </div>
-            </Link>
-          ))}
+          <div className="search__container">
+            {TVResults.map(tv => (
+              <Link to={`/show/${tv["id"]}`}>
+                <div className="search__result">
+                  <h3>{tv.name}</h3>
+                  <p>{tv.overview.substring(0, 100) + "..."}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>

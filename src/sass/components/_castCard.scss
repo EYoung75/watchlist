@@ -1,4 +1,8 @@
-.castCard {
+.cast {
+  margin: 7rem 0;
+}
+
+.castCard__carousel {
   color: white;
   margin: 5rem 0;
   border-radius: 3px;
@@ -22,5 +26,37 @@
 
   h4 {
       font-size: 2rem;
+  }
+
+  @include respond(tab-port) {
+    display: none;
+  }
+}
+
+.castCard__grid {
+  display: none;
+  text-align: center;
+
+  @include respond(tab-port) {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+
+    &__card {
+      width: 15rem;
+
+      img {
+        width: 15rem;
+      }
+    }
+  }
+
+  @include respond(desktop) {
+    &__card:hover {
+      @include elevate(box);
+    }
   }
 }
