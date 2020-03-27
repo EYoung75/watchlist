@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FaChevronCircleLeft, FaAngleRight } from "react-icons/fa";
 
 const ShowDetails = props => {
@@ -17,12 +17,14 @@ const ShowDetails = props => {
       .then(res => setShowDetails(res));
   }
 
+  let history = useHistory();
+
   return (
     <div className="showDetails">
       <div className="showDetails__backdrop">
-        <Link to="/" className="showDetails__backdrop__backButton">
+        <button className="showDetails__backdrop__backButton" onClick={() => history.goBack()}>
           <FaChevronCircleLeft />
-        </Link>
+        </button>
         <img
           src={
             "https://image.tmdb.org/t/p/original/" +

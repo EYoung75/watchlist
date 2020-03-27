@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 function SeasonDetails(props) {
   const [episodes, setEpisodes] = useState([]);
@@ -14,6 +15,8 @@ function SeasonDetails(props) {
       .then(res => res.json())
       .then(res => setEpisodes(res));
   }
+
+  let history = useHistory();
   return <div className="seasonDetails">
       {JSON.stringify(episodes)}
   </div>;

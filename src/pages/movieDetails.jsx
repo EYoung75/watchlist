@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronCircleLeft, FaStar, FaAngleDown } from "react-icons/fa";
-
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import RelatedMovieCard from "../components/relatedMovieCard.jsx";
 import CastCard from "../components/castCard.jsx";
 import Review from "../components/review.jsx";
@@ -35,7 +34,7 @@ const MovieDetails = props => {
       `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
-      .then(res => setRelatedMovies(res.results.splice(0,5)));
+      .then(res => setRelatedMovies(res.results.splice(0, 5)));
 
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
@@ -44,13 +43,18 @@ const MovieDetails = props => {
       .then(res => setMovieReviews(res.results));
   }
 
+  let history = useHistory();
+
   return (
     <div className="movieDetails">
       {console.log(relatedMovies)}
       <div className="movieDetails__backdrop">
-        <Link to="/" className="movieDetails__backdrop__backButton">
+        <button
+          className="movieDetails__backdrop__backButton"
+          onClick={() => history.goBack()}
+        >
           <FaChevronCircleLeft />
-        </Link>
+        </button>
         <img
           src={
             "https://image.tmdb.org/t/p/original/" +
@@ -71,7 +75,9 @@ const MovieDetails = props => {
           <p>{movieDetails["runtime"] + " min."}</p>
         </div>
         <p>{movieDetails["tagline"]}</p>
-        <h3><u>Tags:</u></h3>
+        <h3>
+          <u>Tags:</u>
+        </h3>
         <div className="movieDetails__map">
           {movieDetails["genres"] != null || undefined
             ? movieDetails["genres"].map(movie => {
