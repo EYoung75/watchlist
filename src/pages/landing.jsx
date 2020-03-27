@@ -22,13 +22,13 @@ function Landing() {
       <h2 className="landing__heading">TV:</h2>
       <div className="landing__contentContainer">
         {tvs.map(tv => (
-          <TVCarousel tv={tv} />
+          <TVCarousel tv={tv} key={tv.title}/>
         ))}
       </div>
       <h2 className="landing__heading">Movies:</h2>
       <div className="landing__contentContainer">
         {movies.map(movie => (
-          <MovieCarousel movie={movie} />
+          <MovieCarousel movie={movie} key={movie.title}/>
         ))}
       </div>
     </div>

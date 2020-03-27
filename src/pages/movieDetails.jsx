@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronCircleLeft, FaStar, FaAngleDown } from "react-icons/fa";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import RelatedMovieCard from "../components/relatedMovieCard.jsx";
 import CastCard from "../components/castCard.jsx";
 import Review from "../components/review.jsx";
-import MovieCarousel from "../components/MovieCarousel.jsx";
 
 const MovieDetails = props => {
   const [movieDetails, setMovieDetails] = useState([]);
@@ -56,6 +55,7 @@ const MovieDetails = props => {
           <FaChevronCircleLeft />
         </button>
         <img
+          alt={movieDetails["original_title"]}
           src={
             "https://image.tmdb.org/t/p/original/" +
             movieDetails["backdrop_path"]
@@ -68,7 +68,7 @@ const MovieDetails = props => {
       <div className="movieDetails__overview">
         <div className="movieDetails__overview__date">
           <p>
-            {movieDetails["release_date"] != undefined
+            {movieDetails["release_date"] !== undefined
               ? movieDetails["release_date"].slice(0, 4)
               : ""}
           </p>
@@ -96,8 +96,9 @@ const MovieDetails = props => {
           <h3>Synopsis:</h3>
           <p>{movieDetails["overview"]}</p>
         </div>
-        {movieTrailer != undefined ? (
+        {movieTrailer !== undefined ? (
           <iframe
+            title={movieDetails["original_title"] + " trailer"}
             className="movieDetails__overview__trailer"
             src={`https://www.${movieTrailer.site}.com/embed/${movieTrailer.key}`}
             frameborder="0"
@@ -118,7 +119,7 @@ const MovieDetails = props => {
                 : "movieDetails__reviews__arrow"
             }
           />
-          {reviewsModal == false ? "" : <Review reviews={movieReviews} />}
+          {reviewsModal === false ? "" : <Review reviews={movieReviews} />}
         </div>{" "}
         {relatedMovies.length === 0 ? (
           "No related movies available"

@@ -32,7 +32,7 @@ function Search(props) {
         </Link>
         <h2>Results for "{props.match.params["search"]}"</h2>
       </div>
-      {movieResults.length == 0 && TVResults.length == 0 ? (
+      {movieResults.length === 0 && TVResults.length === 0 ? (
         <div className="search__empty">
           Sorry, no results for '{props.match.params["search"]}' were found.
         </div>

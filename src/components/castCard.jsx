@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators
-} from "reactstrap";
+import { Carousel, CarouselItem, CarouselControl } from "reactstrap";
 
 function CastCard(props) {
   const [cast, setCast] = useState([]);
@@ -18,7 +13,7 @@ function CastCard(props) {
       `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
-      .then(res => setCast(res.cast.slice(0,8)));
+      .then(res => setCast(res.cast.slice(0, 8)));
   }
   const slides = cast.map(item => {
     console.log(item);
@@ -79,7 +74,6 @@ function CastCard(props) {
         </Carousel>
       </div>
       <div className="castCard__grid">
-        
         {cast.map(member => (
           <div className="castCard__grid__card">
             <img

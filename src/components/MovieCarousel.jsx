@@ -3,7 +3,6 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators
 } from "reactstrap";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -55,6 +54,7 @@ const MovieCarousel = (props) => {
       >
         <Link to={`/movie/${item["id"]}`}>
           <img
+          alt={item["title"]}
             src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
           />
         </Link>

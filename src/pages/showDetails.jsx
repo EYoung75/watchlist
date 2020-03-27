@@ -30,6 +30,7 @@ const ShowDetails = props => {
             "https://image.tmdb.org/t/p/original/" +
             showDetails["backdrop_path"]
           }
+          alt={showDetails["name"]}
         />
         <div className="showDetails__backdrop__banner">
           <h2>{showDetails["name"]}</h2>
@@ -54,7 +55,7 @@ const ShowDetails = props => {
         <h3><u>Tags:</u></h3>
 
         <div className="showDetails__map">
-          {showDetails["genres"] != null || undefined
+          {showDetails["genres"] !== null || undefined
             ? showDetails["genres"].map(show => {
                 return <p key={show.id}>|{show.name}</p>;
               })
@@ -65,12 +66,12 @@ const ShowDetails = props => {
         <p>{showDetails["overview"]}</p>
         <h3>
           First Aired:{" "}
-          {showDetails["first_air_date"] != undefined
+          {showDetails["first_air_date"] !== undefined
             ? showDetails["first_air_date"].slice(0, 4)
             : ""}
         </h3>
         <p>
-          {showDetails["in_production"] == true ? "Still running" : "Finished"}
+          {showDetails["in_production"] === true ? "Still running" : "Finished"}
         </p>
         <p>
           {showDetails["number_of_seasons"] +
