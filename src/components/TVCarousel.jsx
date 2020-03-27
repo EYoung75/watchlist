@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import { FaStar } from "react-icons/fa";
 
-const TrendingTV = (props) => {
+const TrendingTV = props => {
   const [hasErrors, setErrors] = useState(false);
   const [TV, setTrendingTV] = useState([]);
   const [TVIndex, setTVIndex] = useState(0);
@@ -21,22 +21,18 @@ const TrendingTV = (props) => {
 
   const next = () => {
     if (animating) return;
-    const nextIndex =
-      TVIndex === TV.length - 1 ? 0 : TVIndex + 1;
+    const nextIndex = TVIndex === TV.length - 1 ? 0 : TVIndex + 1;
     setTVIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
-    const nextIndex =
-      TVIndex === 0 ? TV.length - 1 : TVIndex - 1;
+    const nextIndex = TVIndex === 0 ? TV.length - 1 : TVIndex - 1;
     setTVIndex(nextIndex);
   };
 
   async function fetchTrendingTV() {
-    await fetch(
-      `${props.tv.url}?api_key=${process.env.REACT_APP_API_KEY}`
-    )
+    await fetch(`${props.tv.url}?api_key=${process.env.REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(res => setTrendingTV(res["results"]))
       .catch(() => setErrors(true));
@@ -52,6 +48,7 @@ const TrendingTV = (props) => {
       >
         <Link to={`/show/${item["id"]}`}>
           <img
+            alt={item["name"]}
             src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
           />
         </Link>
@@ -73,7 +70,6 @@ const TrendingTV = (props) => {
         activeIndex={TVIndex}
         next={next}
         previous={previous}
-       
       >
         {/* <CarouselIndicators items={trendingTV} activeIndex={trendingTVIndex} className="carousel__indicators"/> */}
         {slides}

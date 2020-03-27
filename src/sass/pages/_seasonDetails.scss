@@ -1,6 +1,27 @@
 .seasonDetails {
-    height: 100vh;
-    background-color: $primary-color;
-    margin-top: 6rem;
-    color: white;
+  background-color: $primary-color;
+  margin-top: 9rem;
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__header {
+    display: flex;
+    flex-direction: row;
+
+    &__backButton {
+      position: absolute;
+      top: 8rem;
+      left: 2rem;
+      font-size: 2rem;
+    }
+  }
+
+  &__seasons {
+    padding: 0 5rem;
+    &__seasonCard {
+      margin: 5rem 0;
+    }
+  }
 }
