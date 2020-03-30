@@ -33,7 +33,7 @@ function Header() {
           className="header__searchBar__button"
           onClick={() => toggleNavbar()}
         >
-          Search &rarr;
+          Search
         </Link>
       </div>
     </div>

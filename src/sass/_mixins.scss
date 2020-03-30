@@ -26,11 +26,11 @@
   transition: all .4s;
   cursor: pointer;
   @if $type == word {
-    text-shadow: 0 1rem 1rem rgba($secondary-color, 0.3);
+    text-shadow: 0 1rem 1rem rgba($secondary-color, 0.9);
+    transform: scale(1.1);
   }
   @if $type == box {
     transform: scale(1.05);
     box-shadow: 0 1rem 1rem rgba($secondary-color, 0.3);
-
   }
 }

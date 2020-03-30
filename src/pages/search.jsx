@@ -52,7 +52,7 @@ function Search(props) {
           <h4>{TVResults.length} results in TV:</h4>
           <div className="search__container">
             {TVResults.map(tv => (
-              <Link to={`/show/${tv["id"]}`}>
+              <Link to={`/show/${tv["id"]}`} key={tv.name}>
                 <div className="search__result">
                   <h3>{tv.name}</h3>
                   <p>{tv.overview.substring(0, 100) + "..."}</p>

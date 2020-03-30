@@ -22,9 +22,11 @@ const ShowDetails = props => {
   return (
     <div className="showDetails">
       <div className="showDetails__backdrop">
-        <button className="showDetails__backdrop__backButton" onClick={() => history.goBack()}>
-          <FaChevronCircleLeft />
-        </button>
+        <FaChevronCircleLeft
+          className="showDetails__backdrop__backButton"
+          onClick={() => history.goBack()}
+        />
+
         <img
           src={
             "https://image.tmdb.org/t/p/original/" +
@@ -52,7 +54,9 @@ const ShowDetails = props => {
               })
             : ""}
         </div>
-        <h3><u>Tags:</u></h3>
+        <h3>
+          <u>Tags:</u>
+        </h3>
 
         <div className="showDetails__map">
           {showDetails["genres"] != null || undefined

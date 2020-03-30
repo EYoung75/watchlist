@@ -11,6 +11,7 @@ const MovieDetails = props => {
   const [movieReviews, setMovieReviews] = useState([]);
   const [relatedMovies, setRelatedMovies] = useState([]);
   const [reviewsModal, setReviewsModal] = useState(false);
+  const [loading, setLoading] = useState(true);
   const toggleReviews = () => setReviewsModal(!reviewsModal);
 
   useEffect(() => {
@@ -39,21 +40,21 @@ const MovieDetails = props => {
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then(res => res.json())
-      .then(res => setMovieReviews(res.results));
+      .then(res => setMovieReviews(res.results))
+      .then(setLoading(false));
   }
 
   let history = useHistory();
-
+  
   return (
     <div className="movieDetails">
       {console.log(relatedMovies)}
       <div className="movieDetails__backdrop">
-        <button
+        <FaChevronCircleLeft
           className="movieDetails__backdrop__backButton"
           onClick={() => history.goBack()}
-        >
-          <FaChevronCircleLeft />
-        </button>
+        />
+
         <img
           alt={movieDetails["original_title"]}
           src={
@@ -111,14 +112,18 @@ const MovieDetails = props => {
         <CastCard movie={props.match.params["id"]} />
         <div className="movieDetails__reviews">
           <h3>Reviews:</h3>
-          <FaAngleDown
-            onClick={() => toggleReviews()}
-            className={
-              reviewsModal
-                ? "movieDetails__reviews__arrow movieDetails__reviews__arrow--expanded"
-                : "movieDetails__reviews__arrow"
-            }
-          />
+          {movieReviews.length > 0 ? (
+            <FaAngleDown
+              onClick={() => toggleReviews()}
+              className={
+                reviewsModal
+                  ? "movieDetails__reviews__arrow movieDetails__reviews__arrow--expanded"
+                  : "movieDetails__reviews__arrow"
+              }
+            />
+          ) : (
+            "There are no reviews for this title"
+          )}
           {reviewsModal === false ? "" : <Review reviews={movieReviews} />}
         </div>{" "}
         {relatedMovies.length === 0 ? (
