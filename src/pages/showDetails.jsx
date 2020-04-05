@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FaChevronCircleLeft, FaAngleRight } from "react-icons/fa";
 
-const ShowDetails = props => {
+const ShowDetails = (props) => {
   const [showDetails, setShowDetails] = useState([]);
 
   useEffect(() => {
@@ -13,8 +13,8 @@ const ShowDetails = props => {
     fetch(
       `https://api.themoviedb.org/3/tv/${id}}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
-      .then(res => res.json())
-      .then(res => setShowDetails(res));
+      .then((res) => res.json())
+      .then((res) => setShowDetails(res));
   }
 
   let history = useHistory();
@@ -36,12 +36,21 @@ const ShowDetails = props => {
         />
         <div className="showDetails__backdrop__banner">
           <h2>{showDetails["name"]}</h2>
+          <div className="showDetails__map">
+            {showDetails["genres"] != null || undefined
+              ? showDetails["genres"].map((show) => {
+                  return <p key={show.id}>|{show.name}</p>;
+                })
+              : ""}
+          </div>
         </div>
       </div>
       <div className="showDetails__overview">
+        <h3>Available on:</h3>
+
         <div className="showDetails__map">
           {showDetails["networks"] != null || undefined
-            ? showDetails["networks"].map(show => {
+            ? showDetails["networks"].map((show) => {
                 return (
                   <img
                     src={
@@ -51,17 +60,6 @@ const ShowDetails = props => {
                     key={show}
                   />
                 );
-              })
-            : ""}
-        </div>
-        <h3>
-          <u>Tags:</u>
-        </h3>
-
-        <div className="showDetails__map">
-          {showDetails["genres"] != null || undefined
-            ? showDetails["genres"].map(show => {
-                return <p key={show.id}>|{show.name}</p>;
               })
             : ""}
         </div>
@@ -88,10 +86,10 @@ const ShowDetails = props => {
             showDetails["episode_run_time"] +
             " min/episode(s)"}
         </p>
-        <h3>Available Seasons: </h3>
+        <h3>Season Details: </h3>
         <div className="showDetails__seasons">
           {showDetails["seasons"] != null || undefined
-            ? showDetails["seasons"].map(season => (
+            ? showDetails["seasons"].map((season) => (
                 <Link
                   to={`/show/${showDetails["id"]}/season/${season["season_number"]}`}
                   className="showDetails__seasons__season"

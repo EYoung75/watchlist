@@ -13,15 +13,47 @@
     &__backButton {
       position: absolute;
       top: 7rem;
-      left: 1rem;
+      left: 2rem;
       font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.4s;
+      &:hover {
+        @include elevate(word);
+      }
     }
   }
 
   &__seasons {
     padding: 0 5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     &__seasonCard {
       margin: 5rem 0;
+      background-color: $primary-color;
+      color: white;
+      border-radius: 3px;
+      box-shadow: 0 1rem 1rem rgba(black, 0.8);
+      img {
+        border-radius: 3px 3px 0 0;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      &__overview {
+        padding: 2rem;
+      }
+    }
+  }
+
+  @include respond(desktop) {
+    &__seasons__seasonCard {
+      height: 35rem;
+      width: 30%;
+      margin: 3rem;
     }
   }
 }

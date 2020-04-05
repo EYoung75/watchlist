@@ -12,7 +12,6 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-content: center;
-    margin: 2rem 0;
     width: 100%;
     flex-wrap: wrap;
 
@@ -47,12 +46,19 @@
       font-size: 3rem;
       color: white;
       cursor: pointer;
+      transition: all .4s;
 
-      @include elevate(word);
+      &:hover {
+        @include elevate(word);
+      }
     }
   }
 
   &__overview {
+
+    & > * {
+      margin: 3rem 0;
+    }
     padding: 3rem;
     p {
       text-indent: 2rem;

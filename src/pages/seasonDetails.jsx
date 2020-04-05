@@ -13,8 +13,8 @@ function SeasonDetails(props) {
     fetch(
       `https://api.themoviedb.org/3/tv/${season["id"]}/season/${season["season"]}?api_key=${process.env.REACT_APP_API_KEY}`
     )
-      .then(res => res.json())
-      .then(res => setEpisodes(res.episodes));
+      .then((res) => res.json())
+      .then((res) => setEpisodes(res.episodes));
   }
 
   let history = useHistory();
@@ -33,10 +33,19 @@ function SeasonDetails(props) {
       </div>
       <div className="seasonDetails__seasons">
         {episodes != null || undefined
-          ? episodes.map(episode => (
+          ? episodes.map((episode) => (
               <div className="seasonDetails__seasons__seasonCard">
-                <h3>{episode.episode_number + ") " + episode.name}</h3>
-                <p>{episode.overview}</p>
+                <img
+                  src={
+                    "https://image.tmdb.org/t/p/original/" +
+                    episode["still_path"]
+                  }
+                  alt={episode}
+                />
+                <div className="seasonDetails__seasons__seasonCard__overview">
+                  <h3>{episode.episode_number + ") " + episode.name}</h3>
+                  <p>{episode.overview}</p>
+                </div>
               </div>
             ))
           : ""}

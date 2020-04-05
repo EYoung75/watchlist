@@ -13,19 +13,17 @@ function Header() {
         <Link to="/" className="header__logo">
           WatchList
         </Link>
-        <button
+        <FaAngleDown
           onClick={toggleNavbar}
           className={
             collapsed ? "header__button" : "header__button--up header__button"
           }
-        >
-          <FaAngleDown />
-        </button>
+        />
       </div>
       <div className={collapsed ? "header__collapsed" : "header__searchBar"}>
         <input
           id="search"
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           placeholder="Search movies and shows"
         />
         <Link
