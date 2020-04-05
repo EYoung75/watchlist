@@ -5,7 +5,7 @@ import RelatedMovieCard from "../components/relatedMovieCard.jsx";
 import CastCard from "../components/castCard.jsx";
 import Review from "../components/review.jsx";
 
-const MovieDetails = props => {
+const MovieDetails = (props) => {
   const [movieDetails, setMovieDetails] = useState([]);
   const [movieTrailer, setMovieTrailer] = useState([]);
   const [movieReviews, setMovieReviews] = useState([]);
@@ -23,29 +23,29 @@ const MovieDetails = props => {
     fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
-      .then(res => res.json())
-      .then(res => setMovieDetails(res));
+      .then((res) => res.json())
+      .then((res) => setMovieDetails(res));
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
-      .then(res => res.json())
-      .then(res => setMovieTrailer(res.results[0]));
+      .then((res) => res.json())
+      .then((res) => setMovieTrailer(res.results[0]));
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
-      .then(res => res.json())
-      .then(res => setRelatedMovies(res.results.splice(0, 5)));
+      .then((res) => res.json())
+      .then((res) => setRelatedMovies(res.results.splice(0, 5)));
 
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
-      .then(res => res.json())
-      .then(res => setMovieReviews(res.results))
+      .then((res) => res.json())
+      .then((res) => setMovieReviews(res.results))
       .then(setLoading(false));
   }
 
   let history = useHistory();
-  
+
   return (
     <div className="movieDetails">
       {console.log(relatedMovies)}
@@ -64,6 +64,13 @@ const MovieDetails = props => {
         />
         <div className="movieDetails__backdrop__banner">
           <h2>{movieDetails["original_title"]}</h2>
+          <div className="movieDetails__map">
+            {movieDetails["genres"] != null || undefined
+              ? movieDetails["genres"].map((movie) => {
+                  return <p>| {movie.name}</p>;
+                })
+              : ""}
+          </div>
         </div>
       </div>
       <div className="movieDetails__overview">
@@ -76,16 +83,6 @@ const MovieDetails = props => {
           <p>{movieDetails["runtime"] + " min."}</p>
         </div>
         <p>{movieDetails["tagline"]}</p>
-        <h3>
-          <u>Tags:</u>
-        </h3>
-        <div className="movieDetails__map">
-          {movieDetails["genres"] != null || undefined
-            ? movieDetails["genres"].map(movie => {
-                return <p>| {movie.name}</p>;
-              })
-            : ""}
-        </div>{" "}
         <div className="movieDetails__overview__vote">
           <div className="movieDetails__overview__vote__average">
             <FaStar className="movieDetails__overview__vote__star" />
@@ -133,7 +130,7 @@ const MovieDetails = props => {
             <h3>Related Movies:</h3>
             <div className="movieDetails__related">
               {/* <MovieCarousel movie={relatedMovies}/> */}
-              {relatedMovies.map(title => (
+              {relatedMovies.map((title) => (
                 <RelatedMovieCard title={title} />
               ))}
             </div>
