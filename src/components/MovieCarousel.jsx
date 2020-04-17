@@ -1,51 +1,44 @@
 import React, { useState, useEffect } from "react";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-} from "reactstrap";
+import { Carousel, CarouselItem, CarouselControl } from "reactstrap";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const MovieCarousel = (props) => {
+function MovieCarousel(props) {
   const [hasErrors, setErrors] = useState(false);
   const [movies, setMovies] = useState([]);
   const [moviesIndex, setMoviesIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchTrendingMovies();
+    fetchMovies();
+    setLoading(false);
   }, []);
 
   const next = () => {
     if (animating) return;
-    const nextIndex =
-      moviesIndex === movies.length - 1
-        ? 0
-        : moviesIndex + 1;
+    const nextIndex = moviesIndex === movies.length - 1 ? 0 : moviesIndex + 1;
     setMoviesIndex(nextIndex);
   };
 
   const previous = () => {
     if (animating) return;
-    const nextIndex =
-      moviesIndex === 0
-        ? movies.length - 1
-        : moviesIndex - 1;
+    const nextIndex = moviesIndex === 0 ? movies.length - 1 : moviesIndex - 1;
     setMoviesIndex(nextIndex);
   };
 
-  async function fetchTrendingMovies() {
-    await fetch(
-      `${props.movie.url}?api_key=${process.env.REACT_APP_API_KEY}`
-    )
-      .then(res => res.json())
-      .then(res => setMovies(res["results"]))
+  async function fetchMovies() {
+    await fetch(`${props.movie.url}?api_key=${process.env.REACT_APP_API_KEY}`)
+      .then((res) => res.json())
+      .then((res) => setMovies(res["results"]))
       .catch(() => setErrors(true));
+    setLoading(false);
   }
 
-  const slides = movies.map(item => {
-    return (
+  const slides = movies.map((item) => {
+    return loading ? (
+      <div className="carousel__item">Loading</div>
+    ) : (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
@@ -54,7 +47,7 @@ const MovieCarousel = (props) => {
       >
         <Link to={`/movie/${item["id"]}`}>
           <img
-          alt={item["title"]}
+            alt={item["title"]}
             src={"https://image.tmdb.org/t/p/original/" + item["poster_path"]}
           />
         </Link>
@@ -96,6 +89,6 @@ const MovieCarousel = (props) => {
       </Carousel>
     </div>
   );
-};
+}
 
 export default MovieCarousel;
